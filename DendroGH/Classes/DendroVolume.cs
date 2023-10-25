@@ -25,7 +25,7 @@ namespace DendroGH {
         static private extern IntPtr DendroDuplicate (IntPtr grid);
 
         [DllImport ("DendroAPI.dll", CallingConvention = CallingConvention.Cdecl)]
-        static private extern bool DendroRead (IntPtr grid, string filename);
+        static private extern byte DendroRead (IntPtr grid, string filename);
 
         [DllImport ("DendroAPI.dll", CallingConvention = CallingConvention.Cdecl)]
         static private extern bool DendroWrite (IntPtr grid, string filename);
@@ -279,7 +279,7 @@ namespace DendroGH {
             }
 
             // pinvoke file read function
-            this.IsValid = DendroRead (this.Grid, vFile);
+            this.IsValid = DendroRead (this.Grid, vFile) == 1;
 
             if (!this.IsValid) {
                 return false;
