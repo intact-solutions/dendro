@@ -46,6 +46,9 @@ bool DendroGrid::Read(const char * vFile)
 	}
 
 	mGrid = openvdb::gridPtrCast<openvdb::FloatGrid>(file.readGrid(nameIter.gridName()));
+	if (mGrid == nullptr) {
+		return false;
+	}
 
 	return true;
 }
